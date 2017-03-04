@@ -77,7 +77,7 @@ public class CreateApiServiceImpl extends CreateApiService {
             createRestaurant.getLowerLimit(), createRestaurant.getRatings(),
             createRestaurant.getRecommendation(), createRestaurant.getTags(),
             createRestaurant.getUpperLimit());
-         createRestaurant.setId(a);
+            createRestaurant.setId(a);
        return Response.ok().entity(createRestaurant).build();
         } catch(Exception ex){
                return Response.serverError().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, ex.getMessage())).build();

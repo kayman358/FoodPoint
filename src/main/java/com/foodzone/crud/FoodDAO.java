@@ -16,10 +16,10 @@ import org.jdbi.v3.sqlobject.SqlUpdate;
  */
 public interface FoodDAO {
     @GetGeneratedKeys
-    @SqlUpdate("insert into restaurants (name, address, contact-number, "
+    @SqlUpdate("INSERT INTO restaurants (name, address, contact-number, "
             + "description, likes, lower-limit, ratings, recommendation, "
             + "tags, upper-limit) "
-            + "values (:name, :address, :contact-number, "
+            + "VALUES (:name, :address, :contact-number, "
             + ":description, :likes, :lower-limit, :ratings, :recommendation, "
             + ":tags, :upper-limit)")
             
