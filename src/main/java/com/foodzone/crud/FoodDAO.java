@@ -16,24 +16,24 @@ import org.jdbi.v3.sqlobject.SqlUpdate;
  */
 public interface FoodDAO {
     @GetGeneratedKeys
-    @SqlUpdate("INSERT INTO restaurants (name, address, contact-number, "
-            + "description, likes, lower-limit, ratings, recommendation, "
-            + "tags, upper-limit) "
-            + "VALUES (:name, :address, :contact-number, "
-            + ":description, :likes, :lower-limit, :ratings, :recommendation, "
-            + ":tags, :upper-limit)")
+    @SqlUpdate("INSERT INTO restaurants (name, address, contact_number, "
+            + "description, likes, lower_limit, ratings, recommendation, "
+            + "tags, upper_limit) "
+            + "VALUES (:name, :address, :contact_number, "
+            + ":description, :likes, :lower_limit, :ratings, :recommendation, "
+            + ":tags, :upper_limit)")
             
-    int createNewRestaurant (
+    long createNewRestaurant (
             @Bind("name") String name, 
             @Bind("address") String address,
-            @Bind("contact-number") String contact_number,
+            @Bind("contact_umber") String contact_number,
             @Bind("description") String description,
             @Bind("likes") long likes,
-            @Bind("lower-limit") long lower_limit,
+            @Bind("lower_limit") long lower_limit,
             @Bind("ratings") long ratings,
             @Bind("recommendation") long recommendation,
             @Bind("tags") String tags,
-            @Bind("upper-limit") long upper_limit
+            @Bind("upper_limit") long upper_limit
                     );
     
     @SqlQuery 

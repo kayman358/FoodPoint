@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 import static org.hamcrest.CoreMatchers.equalTo;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import org.junit.Test;
 
 
@@ -24,7 +25,7 @@ import org.junit.Test;
  */
 public class FirstTest {
     
-     @Test
+    @Test
     public void createRestaurant() {
         Date d = Calendar.getInstance().getTime();
         SimpleDateFormat sp = new SimpleDateFormat("YYYY-MM-dd");
@@ -33,24 +34,24 @@ public class FirstTest {
         o.put("name", "Farinto Folarin");
         o.put("address", "Number 16, Farinto Avenue, Bodija Estate");
         o.put("contactNumber", "08054483889");
-        o.put("upperLimit", 15000.00);
-        o.put("lowerLimit", 350.00);
         o.put("description", "A restaurant with a whole lot of class");
-        o.put("tags", "Amala, Efo");
+        o.put("likes", 40);
+        o.put("lowerLimit", 350);
+        o.put("ratings", 34);
         o.put("recommendation", 5);
-        o.put("likes", "40");
-        o.put("ratings", 34.9);
+        o.put("tags", "Amala, Efo");
+        o.put("upperLimit", 15000);
         System.out.println("the value being passed " + o.toJSONString());
-       // given().contentType(JSON).pathParam("customer_id", 1).body(o.toJSONString()).when().post("http://localhost:9080/bss/v1/provision/customers/{customer_id}/contracts/prepaid").then().statusCode(200);
-     Response resp;
+      
+        Response resp;
          resp = given().
                  contentType(JSON).
                  body(o.toJSONString()).
                  when().
                  post("http://localhost:8080/FoodPoints/myfoodzone/v1/create/restaurants").
                  then().
-                 //body("message", equalTo("Successfully created!")).
                  contentType(ContentType.JSON).extract().response();
+         //.then().statusCode(200);
          String r = resp.asString();
          System.out.println(r);
     }
@@ -59,12 +60,14 @@ public class FirstTest {
      public static void main(String[] args) {
 
         FirstTest op = new FirstTest();
-        op.rullAll();
+        op.runAll();
     }
 
-    void rullAll() {
+    void runAll() {
      createRestaurant();      
     }
 
     
 }
+//body("message", equalTo("Successfully created!")).
+ // given().contentType(JSON).pathParam("customer_id", 1).body(o.toJSONString()).when().post("http://localhost:9080/bss/v1/provision/customers/{customer_id}/contracts/prepaid").then().statusCode(200);
