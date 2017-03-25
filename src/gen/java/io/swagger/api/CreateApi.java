@@ -146,8 +146,8 @@ public class CreateApi  {
     }
     @POST
     @Path("/restaurants")
-    @Consumes({ "application/json" })
-    @Produces({ "application/json" })
+    @Consumes({"application/json"})
+    @Produces({"application/json"})
     @io.swagger.annotations.ApiOperation(value = "", notes = "create new customer", response = void.class, tags={ "Event", })
     @io.swagger.annotations.ApiResponses(value = { 
         @io.swagger.annotations.ApiResponse(code = 201, message = "New restaurant created", response = void.class),

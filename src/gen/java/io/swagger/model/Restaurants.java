@@ -38,10 +38,10 @@ public class Restaurants   {
   private String contactNumber = null;
 
   @JsonProperty("upper_limit")
-  private long upperLimit = 0;
+  private double upperLimit = 0;
 
   @JsonProperty("lower_limit")
-  private long lowerLimit = 0;
+  private double lowerLimit = 0;
 
   @JsonProperty("description")
   private String description = null;
@@ -56,7 +56,7 @@ public class Restaurants   {
   private long likes = 0;
 
   @JsonProperty("ratings")
-  private long ratings = 0;
+  private double ratings = 0;
 
   public Restaurants id(long id) {
     this.id = id;
@@ -145,7 +145,7 @@ public class Restaurants   {
   **/
   @JsonProperty("upper_limit")
   @ApiModelProperty(value = "")
-  public long getUpperLimit() {
+  public double getUpperLimit() {
     return upperLimit;
   }
 
@@ -164,7 +164,7 @@ public class Restaurants   {
   **/
   @JsonProperty("lower_limit")
   @ApiModelProperty(required = true, value = "")
-  public long getLowerLimit() {
+  public double getLowerLimit() {
     return lowerLimit;
   }
 
@@ -259,7 +259,7 @@ public class Restaurants   {
   **/
   @JsonProperty("ratings")
   @ApiModelProperty(value = "")
-  public long getRatings() {
+  public double getRatings() {
     return ratings;
   }
 

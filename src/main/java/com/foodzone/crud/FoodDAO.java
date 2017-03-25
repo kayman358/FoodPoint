@@ -5,10 +5,11 @@
  */
 package com.foodzone.crud;
 
-import org.jdbi.v3.sqlobject.Bind;
-import org.jdbi.v3.sqlobject.GetGeneratedKeys;
-import org.jdbi.v3.sqlobject.SqlQuery;
-import org.jdbi.v3.sqlobject.SqlUpdate;
+import org.skife.jdbi.v2.sqlobject.Bind;
+import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
+import org.skife.jdbi.v2.sqlobject.SqlQuery;
+import org.skife.jdbi.v2.sqlobject.SqlUpdate;
+import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
 
 /**
  *
@@ -26,20 +27,18 @@ public interface FoodDAO {
     long createNewRestaurant (
             @Bind("name") String name, 
             @Bind("address") String address,
-            @Bind("contact_umber") String contact_number,
+            @Bind("contact_number") String contact_number,
             @Bind("description") String description,
             @Bind("likes") long likes,
-            @Bind("lower_limit") long lower_limit,
-            @Bind("ratings") long ratings,
+            @Bind("lower_limit") double lower_limit,
+            @Bind("ratings") double ratings,
             @Bind("recommendation") long recommendation,
             @Bind("tags") String tags,
-            @Bind("upper_limit") long upper_limit
+            @Bind("upper_limit") double upper_limit
                     );
-    
-    @SqlQuery 
 
   /**
    * close with no args is used to close the connection
    */
-  void close();
+  //void close();
 }

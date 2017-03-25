@@ -36,17 +36,17 @@ public class FirstTest {
         o.put("contactNumber", "08054483889");
         o.put("description", "A restaurant with a whole lot of class");
         o.put("likes", 40);
-        o.put("lowerLimit", 350);
-        o.put("ratings", 34);
+        o.put("lowerLimit", 350.00);
+        o.put("ratings", 34.5);
         o.put("recommendation", 5);
-        o.put("tags", "Amala, Efo");
-        o.put("upperLimit", 15000);
-        System.out.println("the value being passed " + o.toJSONString());
+        o.put("tags", "Amala");
+        o.put("upperLimit", 15000.00);
+        System.out.println("the value being passed " + o);
       
         Response resp;
          resp = given().
-                 contentType(JSON).
-                 body(o.toJSONString()).
+                 contentType(ContentType.JSON).
+                 body(o).
                  when().
                  post("http://localhost:8080/FoodPoints/myfoodzone/v1/create/restaurants").
                  then().
