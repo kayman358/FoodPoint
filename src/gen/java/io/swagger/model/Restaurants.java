@@ -34,13 +34,13 @@ public class Restaurants   {
   @JsonProperty("address")
   private String address = null;
 
-  @JsonProperty("contact_number")
+  @JsonProperty("contactNumber")
   private String contactNumber = null;
 
-  @JsonProperty("upper_limit")
+  @JsonProperty("upperLimit")
   private double upperLimit = 0;
 
-  @JsonProperty("lower_limit")
+  @JsonProperty("lowerLimit")
   private double lowerLimit = 0;
 
   @JsonProperty("description")
@@ -124,7 +124,7 @@ public class Restaurants   {
    * Get contactNumber
    * @return contactNumber
   **/
-  @JsonProperty("contact_number")
+  @JsonProperty("contactNumber")
   @ApiModelProperty(value = "")
   public String getContactNumber() {
     return contactNumber;
@@ -143,7 +143,7 @@ public class Restaurants   {
    * Get upperLimit
    * @return upperLimit
   **/
-  @JsonProperty("upper_limit")
+  @JsonProperty("upperLimit")
   @ApiModelProperty(value = "")
   public double getUpperLimit() {
     return upperLimit;
@@ -162,7 +162,7 @@ public class Restaurants   {
    * Get lowerLimit
    * @return lowerLimit
   **/
-  @JsonProperty("lower_limit")
+  @JsonProperty("lowerLimit")
   @ApiModelProperty(required = true, value = "")
   public double getLowerLimit() {
     return lowerLimit;
