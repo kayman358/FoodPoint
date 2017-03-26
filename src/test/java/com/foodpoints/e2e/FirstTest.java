@@ -31,7 +31,7 @@ public class FirstTest {
         SimpleDateFormat sp = new SimpleDateFormat("YYYY-MM-dd");
         JSONObject o = new JSONObject();
 
-        o.put("name", "Farinto Folarin");
+        o.put("name", "Oliver's Cafe");
         o.put("address", "Number 16, Farinto Avenue, Bodija Estate");
         o.put("contactNumber", "08054483889");
         o.put("description", "A restaurant with a whole lot of class");
@@ -41,19 +41,50 @@ public class FirstTest {
         o.put("recommendation", 5);
         o.put("tags", "Amala");
         o.put("upperLimit", 15000.00);
-        System.out.println("the value being passed " + o);
-      
+        
         Response resp;
          resp = given().
                  contentType(ContentType.JSON).
                  body(o).
                  when().
-                 post("http://localhost:8080/FoodPoints/myfoodzone/v1/create/restaurants").
-                 then().
+                 post("http://localhost:8080/FoodPoints/myfoodzone/v1/create/"
+                         + "restaurants").then().
                  contentType(ContentType.JSON).extract().response();
          //.then().statusCode(200);
          String r = resp.asString();
          System.out.println(r);
+    }
+    
+    public void createCustomer(){
+        JSONObject o = new JSONObject();
+        o.put("name", "Bisi Olapegba");
+        o.put("email", "bisibabe@gmail.com");
+        o.put("password", "passkey1010");
+        Response resp;
+         resp = given().
+                 contentType(ContentType.JSON).
+                 body(o).
+                 when().
+                 post("http://localhost:8080/FoodPoints/myfoodzone/v1/create/customers").then().statusCode(200).
+                 contentType(ContentType.JSON).extract().response();
+         String r = resp.asString();
+         System.out.println(r);
+    }
+    
+    public void createCustomerContact(){
+        JSONObject o = new JSONObject();
+        o.put("customerAddress", "45, Ibikunle Avenue, Old Bodija, Ibadan");
+        o.put("phoneNumber", "09070214053");
+        o.put("mainContact", true);
+        Response resp;
+        resp = given().
+                contentType(ContentType.JSON).
+                body(o).
+                when().
+                post("http://localhost:8080/FoodPoints/myfoodzone/v1/create/customer-contact").then().
+                 contentType(ContentType.JSON).extract().response();
+        String r = resp.asString();
+        System.out.println(r);
     }
     
     
@@ -64,7 +95,9 @@ public class FirstTest {
     }
 
     void runAll() {
-     createRestaurant();      
+     createRestaurant(); 
+     //createCustomer();
+     //createCustomerContact();
     }
 
     

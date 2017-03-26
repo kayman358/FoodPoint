@@ -5,6 +5,7 @@
  */
 package com.foodzone.crud;
 
+import com.sun.jndi.cosnaming.IiopUrl;
 import org.skife.jdbi.v2.sqlobject.Bind;
 import org.skife.jdbi.v2.sqlobject.GetGeneratedKeys;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
@@ -16,6 +17,7 @@ import org.skife.jdbi.v2.sqlobject.customizers.Mapper;
  * @author Kolade
  */
 public interface FoodDAO {
+// CREATE OPERATIONS
     @GetGeneratedKeys
     @SqlUpdate("INSERT INTO restaurants (name, address, contact_number, "
             + "description, likes, lower_limit, ratings, recommendation, "
@@ -36,9 +38,27 @@ public interface FoodDAO {
             @Bind("tags") String tags,
             @Bind("upper_limit") double upper_limit
                     );
+    
+    @GetGeneratedKeys
+    @SqlUpdate("INSERT INTO customers (name,email_address,password) "
+            + "VALUES (:name,:email_address,:password)")
+    long createCustomer(
+    @Bind("name") String name,
+    @Bind("email_address") String email_address,
+    @Bind("password") String password
+    );
+    
+    @GetGeneratedKeys
+    @SqlUpdate("INSERT INTO customer_contacts(customer_address,phone_number,"
+            + "main_contact)"+  "VALUES (:customer_address,:phone_number,:main_contact)")
+    long createCustomerContact(
+    @Bind("customer_address") String customer_address,
+    @Bind("phone_number") String phone_number,
+    @Bind("main_contact") boolean main_contact
+    );
 
   /**
    * close with no args is used to close the connection
    */
-  //void close();
+  void close();
 }
