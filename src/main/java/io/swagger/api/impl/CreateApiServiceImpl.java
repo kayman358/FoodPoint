@@ -80,19 +80,20 @@ public class CreateApiServiceImpl extends CreateApiService {
             createRestaurant.getUpperLimit());
          createRestaurant.setId(a);
             
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "Successfully created!")).build();
-       //return Response.ok().entity(createRestaurant).build();
+           // return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "Successfully created!")).build();
+              return Response.ok().entity(createRestaurant).build();
         } catch(Exception ex){
             ex.printStackTrace();
                return Response.serverError().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, ex.getMessage())).build();
                
                 }
-//        finally {
-//            if (foods != null) {
-//                foods.close();
-//            }
-//       
-//    }
+        finally {
+            if (foods != null) {
+                foods.close();
+            }
+       
+    }
+        
         } 
     @Override
     public Response createReview(Reviews reviews, SecurityContext securityContext) throws NotFoundException {

@@ -40,5 +40,5 @@ public interface FoodDAO {
   /**
    * close with no args is used to close the connection
    */
-  //void close();
+  void close();
 }
