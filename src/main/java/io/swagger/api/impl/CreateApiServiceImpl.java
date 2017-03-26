@@ -21,6 +21,8 @@ import java.util.List;
 import io.swagger.api.NotFoundException;
 
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
@@ -38,12 +40,42 @@ public class CreateApiServiceImpl extends CreateApiService {
     @Override
     public Response createCustomer(Customers createCustomer, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        FoodDAO foods = null;
+        try{
+            foods = JdbiHelper.getDBI().open(FoodDAO.class);
+            long customer = foods.createCustomer(createCustomer.getName(),createCustomer.getEmail(), createCustomer.getPassword());
+            createCustomer.setId(customer);
+                 
+        }
+        
+        catch (Exception ex) {
+            Logger.getLogger(CreateApiServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.serverError().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, ex.getMessage())).build();
+        } finally {
+            if (foods != null) {
+                foods.close();
+            }
+        }
+        return Response.ok().entity(createCustomer).build();
     }
     @Override
     public Response createCustomerContact(CustomerContacts customerContact, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        FoodDAO foods = null;
+        try{
+            foods = JdbiHelper.getDBI().open(FoodDAO.class);
+            long cContact = foods.createCustomerContact(customerContact.getCustomerAddress(), customerContact.getPhoneNumber(), customerContact.getMainContact());
+            customerContact.setId(cContact);
+        }
+        catch(Exception ex){
+            Logger.getLogger(CreateApiServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.serverError().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, ex.getMessage())).build();
+        } finally {
+            if (foods != null) {
+                foods.close();
+            }
+        }
+        return Response.ok().entity(customerContact).build();
     }
     @Override
     public Response createFavorite(long customerId, long restaurantId, Favourites createFavorite, SecurityContext securityContext) throws NotFoundException {
@@ -80,19 +112,20 @@ public class CreateApiServiceImpl extends CreateApiService {
             createRestaurant.getUpperLimit());
          createRestaurant.setId(a);
             
-            return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "Successfully created!")).build();
-       //return Response.ok().entity(createRestaurant).build();
-        } catch(Exception ex){
-            ex.printStackTrace();
-               return Response.serverError().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, ex.getMessage())).build();
+        } 
+        catch(Exception ex){
+           // ex.printStackTrace();
+              Logger.getLogger(CreateApiServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.serverError().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, ex.getMessage())).build();
                
-                }
-//        finally {
-//            if (foods != null) {
-//                foods.close();
-//            }
-//       
-//    }
+       }
+        finally {
+            if (foods != null) {
+                foods.close();
+            }
+       
+    }
+        return Response.ok().entity(createRestaurant).build();
         } 
     @Override
     public Response createReview(Reviews reviews, SecurityContext securityContext) throws NotFoundException {
