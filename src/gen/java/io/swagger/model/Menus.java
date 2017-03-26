@@ -70,6 +70,9 @@ public class Menus   {
 
   @JsonProperty("menuName")
   private String menuName = null;
+  
+    @JsonProperty("description")
+  private String description = null;
 
   @JsonProperty("menuPrice")
   private Float menuPrice = null;
@@ -183,6 +186,26 @@ public class Menus   {
   public void setRestaurantName(String restaurantName) {
     this.restaurantName = restaurantName;
   }
+  
+  public Menus description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @JsonProperty("description")
+  @ApiModelProperty(required = true, value = "")
+  public String getdescription() {
+    return description;
+  }
+
+  public void setdescription(String description) {
+    this.description = description;
+  }
+  
 
   public Menus id(long id) {
     this.id = id;
@@ -274,6 +297,7 @@ public class Menus   {
         Objects.equals(this.menuType, menus.menuType) &&
         Objects.equals(this.menuName, menus.menuName) &&
         Objects.equals(this.menuPrice, menus.menuPrice) &&
+        Objects.equals(this.description, menus.description) &&
         Objects.equals(this.restaurantName, menus.restaurantName) &&
         Objects.equals(this.id, menus.id) &&
         Objects.equals(this.creationDate, menus.creationDate) &&
@@ -283,7 +307,7 @@ public class Menus   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(restaurantId, menuType, menuName, menuPrice, restaurantName, id, creationDate, modificationDate, otherMenuItems);
+    return Objects.hash(restaurantId, menuType, menuName, menuPrice, description, restaurantName, id, creationDate, modificationDate, otherMenuItems);
   }
 
 
@@ -296,6 +320,7 @@ public class Menus   {
     sb.append("    menuType: ").append(toIndentedString(menuType)).append("\n");
     sb.append("    menuName: ").append(toIndentedString(menuName)).append("\n");
     sb.append("    menuPrice: ").append(toIndentedString(menuPrice)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    restaurantName: ").append(toIndentedString(restaurantName)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");

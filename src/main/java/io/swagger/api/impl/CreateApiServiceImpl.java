@@ -92,7 +92,31 @@ public class CreateApiServiceImpl extends CreateApiService {
     @Override
     public Response createMenu(Menus menu, SecurityContext securityContext) throws NotFoundException {
         // do some magic!
-        return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
+        
+        FoodDAO foods = null;
+        try{
+            foods = JdbiHelper.getDBI().open(FoodDAO.class);
+            
+            long createdMenu = foods.createMenu(menu.getRestaurantId(), 
+                    menu.getMenuType().name(), menu.getOtherMenuItems(), 
+                    menu.getMenuName(),menu.getMenuPrice(), 
+                    menu.getRestaurantName(), menu.getdescription());
+            
+            menu.setId(createdMenu);
+            
+            return Response.ok().entity(menu).build();
+            
+        }catch(Exception ex){
+            Logger.getLogger(CreateApiServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return Response.serverError().entity(new ApiResponseMessage(ApiResponseMessage.ERROR, ex.getMessage())).build();
+            
+        }finally {
+            if (foods != null) {
+                foods.close();
+            }
+
+        }
+       
     }
 
     @Override
@@ -108,13 +132,13 @@ public class CreateApiServiceImpl extends CreateApiService {
         try {
             foods = JdbiHelper.getDBI().open(FoodDAO.class);
 
-            long a = foods.createNewRestaurant(createRestaurant.getName(),
+            long newRestaurant = foods.createNewRestaurant(createRestaurant.getName(),
                     createRestaurant.getAddress(), createRestaurant.getContactNumber(),
                     createRestaurant.getDescription(), createRestaurant.getLikes(),
                     createRestaurant.getLowerLimit(), createRestaurant.getRatings(),
                     createRestaurant.getRecommendation(), createRestaurant.getTags(),
                     createRestaurant.getUpperLimit());
-            createRestaurant.setId(a);
+            createRestaurant.setId(newRestaurant);
             // return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "Successfully created!")).build();
             return Response.ok().entity(createRestaurant).build();
 

@@ -56,6 +56,19 @@ public interface FoodDAO {
     @Bind("phone_number") String phone_number,
     @Bind("main_contact") boolean main_contact
     );
+    
+    @GetGeneratedKeys
+    @SqlUpdate("INSERT INTO menus (restaurant_id, menu_type, other_menu_items, "
+            + "menu_name, menu_price, restaurant_name, description)")
+          
+    long createMenu(
+    @Bind("restaurant_id") long restaurant_id,
+    @Bind("menu_type") String menu_type,
+    @Bind("other_menu_items") String other_menu_items,
+    @Bind("menu_name") String menu_name,
+    @Bind("menu_price") float menu_price,
+    @Bind("restaurant_name") String restaurant_name,
+    @Bind("description") String description);
 
   /**
    * close with no args is used to close the connection
