@@ -34,6 +34,11 @@ public class Menus   {
    * Gets or Sets menuType
    */
   public enum MenuTypeEnum {
+      
+    STARTERS ("starters"),
+    
+    DESERTS ("deserts"),
+      
     MAIN_MENU("main_menu"),
     
     SOUPS("soups"),

@@ -63,6 +63,13 @@ public class Invoices   {
 
   @JsonProperty("orderId")
   private long orderId = 0;
+  
+  @JsonProperty("customer_id")
+  private long customerId = 0;
+
+  @JsonProperty("restaurant_id")
+  private long restaurantId = 0;
+
 
   @JsonProperty("id")
   private long id = 0;
@@ -109,6 +116,45 @@ public class Invoices   {
 
   public void setOrderId(long orderId) {
     this.orderId = orderId;
+  }
+  
+  
+  public Invoices customerId(long customerId) {
+    this.customerId = customerId;
+    return this;
+  }
+
+   /**
+   * Get customerId
+   * @return customerId
+  **/
+  @JsonProperty("customer_id")
+  @ApiModelProperty(required = true, value = "")
+  public long getCustomerId() {
+    return customerId;
+  }
+
+  public void setCustomerId(long customerId) {
+    this.customerId = customerId;
+  }
+
+  public Invoices restaurantId(long restaurantId) {
+    this.restaurantId = restaurantId;
+    return this;
+  }
+
+   /**
+   * Get restaurantId
+   * @return restaurantId
+  **/
+  @JsonProperty("restaurant_id")
+  @ApiModelProperty(required = true, value = "")
+  public long getRestaurantId() {
+    return restaurantId;
+  }
+
+  public void setRestaurantId(long restaurantId) {
+    this.restaurantId = restaurantId;
   }
 
   public Invoices id(long id) {
@@ -179,6 +225,8 @@ public class Invoices   {
     }
     Invoices invoices = (Invoices) o;
     return Objects.equals(this.paymentStatus, invoices.paymentStatus) &&
+        Objects.equals(this.customerId, invoices.customerId) &&
+        Objects.equals(this.restaurantId, invoices.restaurantId) &&
         Objects.equals(this.orderId, invoices.orderId) &&
         Objects.equals(this.id, invoices.id) &&
         Objects.equals(this.creationDate, invoices.creationDate) &&
@@ -198,6 +246,8 @@ public class Invoices   {
     
     sb.append("    paymentStatus: ").append(toIndentedString(paymentStatus)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
+    sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
+    sb.append("    restaurantId: ").append(toIndentedString(restaurantId)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
     sb.append("    modificationDate: ").append(toIndentedString(modificationDate)).append("\n");

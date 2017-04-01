@@ -31,6 +31,9 @@ public class Reviews   {
 
   @JsonProperty("restaurantId")
   private long restaurantId = 0;
+  
+  @JsonProperty("ratings")
+  private long ratings = 0;
 
   @JsonProperty("id")
   private long id = 0;
@@ -81,6 +84,29 @@ public class Reviews   {
   public void setRestaurantId(long restaurantId) {
     this.restaurantId = restaurantId;
   }
+  
+  
+  
+  public Reviews ratings(long ratings) {
+    this.ratings = ratings;
+    return this;
+  }
+
+   /**
+   * ratings of the review
+   * @return ratings
+  **/
+  @JsonProperty("ratings")
+  @ApiModelProperty(required = true, value = "ratings of the restaurant's review")
+  public long getRatings() {
+    return ratings;
+  }
+
+  public void setRatings(long ratings) {
+    this.ratings = ratings;
+  }
+  
+  
 
   public Reviews id(long id) {
     this.id = id;
@@ -171,6 +197,7 @@ public class Reviews   {
     return Objects.equals(this.customerId, reviews.customerId) &&
         Objects.equals(this.restaurantId, reviews.restaurantId) &&
         Objects.equals(this.id, reviews.id) &&
+        Objects.equals(this.ratings, reviews.ratings) &&
         Objects.equals(this.creationDate, reviews.creationDate) &&
         Objects.equals(this.modificationDate, reviews.modificationDate) &&
         Objects.equals(this.reviewsContent, reviews.reviewsContent);
@@ -178,7 +205,7 @@ public class Reviews   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(customerId, restaurantId, id, creationDate, modificationDate, reviewsContent);
+    return Objects.hash(customerId, restaurantId, id, ratings, creationDate, modificationDate, reviewsContent);
   }
 
 
@@ -190,6 +217,7 @@ public class Reviews   {
     sb.append("    customerId: ").append(toIndentedString(customerId)).append("\n");
     sb.append("    restaurantId: ").append(toIndentedString(restaurantId)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    ratings: ").append(toIndentedString(ratings)).append("\n");
     sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
     sb.append("    modificationDate: ").append(toIndentedString(modificationDate)).append("\n");
     sb.append("    reviewsContent: ").append(toIndentedString(reviewsContent)).append("\n");
